@@ -18,25 +18,59 @@ export default function Home() {
     setResult(json);
   }
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>OSINT Breach Risk Predictor</h1>
+    <div style={{ padding: "2rem", maxWidth: "500px" }}>
+      <h1>Prediccion de brecheado</h1>
       <form onSubmit={handleSubmit}>
-        <input name="job" placeholder="Job Title" required /><br />
-        <input name="password" placeholder="Password" required /><br />
-        <select name="pastebin">
-          <option>No</option>
-          <option>Yes</option>
-        </select><br />
-        <input name="country" placeholder="Country" required /><br />
-        <button type="submit">Predict</button>
+        <label>
+          Puesto de trabajo:
+          <br />
+          <input
+            name="job"
+            placeholder="Ej: Analista de Ciberseguridad"
+            required
+          />
+        </label>
+        <br /><br />
+        <label>
+          Contraseña:
+          <br />
+          <input
+            name="password"
+            placeholder="Introduce la contraseña"
+            required
+          />
+        </label>
+        <br /><br />
+        <label>
+          Aparece en un Public Pastebin?
+          <br />
+          <select name="pastebin">
+            <option>No</option>
+            <option>Si</option>
+          </select>
+        </label>
+        <br /><br />
+        <label>
+          País:
+          <br />
+          <input
+            name="country"
+            placeholder="Ej: España"
+            required
+          />
+        </label>
+        <br /><br />
+        <button type="submit">Predecir riesgo</button>
       </form>
       {result && (
-        <div>
-          <p>Password strength: {result.passwordStrength}</p>
-          <p>Probability: {result.probability}%</p>
-          <p>Risk level: {result.riskLevel}</p>
+        <div style={{ marginTop: "2rem" }}>
+          <h3>Resultado</h3>
+          <p><strong>Fuerza de la contraseña:</strong> {result.passwordStrength}</p>
+          <p><strong>Probabilidad de brecha:</strong> {result.probability}%</p>
+          <p><strong>Nivel de riesgo:</strong> {result.riskLevel}</p>
         </div>
       )}
     </div>
   );
 }
+
